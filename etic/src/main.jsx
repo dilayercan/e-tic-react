@@ -1,14 +1,23 @@
 // index.jsx veya main.jsx
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // Bootstrap'ın JS dosyası
-import { ProductProvider } from './context/productContext.jsx';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.jsx";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.js";
+import "./index.css";
+import { ProductProvider } from "./context/productContext.jsx";
+import { BasketProvider } from "./context/basketContext.jsx";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
     <ProductProvider>
-        <App/>
+      <BasketProvider>
+        <App />
+
+        <ToastContainer />
+      </BasketProvider>
     </ProductProvider>
-)
+  </React.StrictMode>
+);

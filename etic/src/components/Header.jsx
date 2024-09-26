@@ -1,7 +1,14 @@
-import {Link} from "react-router-dom";
-import {NavLink} from "react-router-dom";
+import { useContext } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { BasketContext } from "../context/basketContext";
 
 const Header = () => {
+  const { basket } = useContext(BasketContext);
+
+  // toplam eleman sayısını hesapla (miktar değerlerini topla)
+  const total = basket.reduce((total, item) => total + item.amount, 0);
+
+  console.log(basket);
   return (
     <nav className="navbar navbar-dark bg-dark sticky-top navbar-expand-sm">
       <div className="container-fluid">
@@ -48,7 +55,7 @@ const Header = () => {
                 data-bs-dismiss="offcanvas"
               >
                 <NavLink to="/sepet">Sepet</NavLink>
-                
+                <span className="badge bg-danger ms-2">{total}</span>
               </li>
             </ul>
           </div>
@@ -59,4 +66,3 @@ const Header = () => {
 };
 
 export default Header;
-
